@@ -41,20 +41,13 @@ const getStar = prop("star");
 
 const isCircleWhite = compose(isWhite, getCircle);
 const isCircleBlue = compose(isBlue, getCircle);
-const isSquareWhite = compose(isWhite, getSquare);
 const isTriangleWhite = compose(isWhite, getTriangle);
+const isTriangleAndCircleWhite = allPass([isCircleWhite, isTriangleWhite]);
 const isTriangleGreen = compose(isGreen, getTriangle);
 const isStarWhite = compose(isWhite, getStar);
 const isStarRed = compose(isRed, getStar);
 const isSquareGreen = compose(isGreen, getSquare);
 const isSquareOrange = compose(isOrange, getSquare);
-
-const isAnyFigureWhite = anyPass([
-    isCircleWhite,
-    isSquareWhite,
-    isTriangleWhite,
-    isStarWhite,
-]);
 
 const getAllFigureColors = values();
 
@@ -75,7 +68,7 @@ const isOnlyTwoGreen = compose(equals(2), getGreenFiguresCount);
 export const validateFieldN1 = allPass([
     isStarRed,
     isSquareGreen,
-    isAnyFigureWhite,
+    isTriangleAndCircleWhite,
 ]);
 
 // 2. Как минимум две фигуры зеленые.
